@@ -1,0 +1,34 @@
+# Vacuum Cleaner Agent
+
+# Initial condition of rooms
+rooms = {
+    'A': 'Dirty',
+    'B': ' clean'
+}
+# Starting position
+current_room = 'A'
+
+print("Vacuum Cleaner Agent Started")
+
+while True:
+
+    print("\nCurrent Room:", current_room)
+
+    # Check room condition
+    if rooms[current_room] == 'Dirty':
+        print("Room is Dirty")
+        print("Cleaning the room...")
+        rooms[current_room] = 'Clean'
+        print("Room Cleaned Successfully")
+    else:
+        print("Room is Already Clean")
+    # Move to next room
+    if current_room == 'A':
+        current_room = 'B'
+    else:
+        break
+# Final result
+print("\nFinal Room Status:")
+print(rooms)
+print("All Rooms are Clean!")
+

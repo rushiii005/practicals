@@ -1,0 +1,54 @@
+
+# Program: Minimax Algorithm
+
+def minimax(depth, node, maximizing, values):
+
+    # Base condition
+    if depth == 2:
+        return values[node]
+
+    if maximizing:
+
+        best = -999
+
+        # Check left and right child
+        for i in range(2):
+
+            value = minimax(
+                depth + 1,
+                node * 2 + i,
+                False,
+                values
+            )
+
+            best = max(best, value)
+
+        return best
+
+    else:
+
+        best = 999
+
+        # Check left and right child
+        for i in range(2):
+
+            value = minimax(
+                depth + 1,
+                node * 2 + i,
+                True,
+                values
+            )
+
+            best = min(best, value)
+
+        return best
+
+
+# Main program
+values = [3, 5, 6, 9, 1, 2, 0, -1]
+
+print("Game Playing Agent Using Minimax")
+
+result = minimax(0, 0, True, values)
+
+print("Best Possible Value:", result)

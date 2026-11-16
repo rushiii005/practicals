@@ -1,0 +1,73 @@
+
+# Program: Alpha-Beta Pruning
+
+def alphabeta(depth, node, maximizing,
+              values, alpha, beta):
+
+    # Base condition
+    if depth == 2:
+        return values[node]
+
+    if maximizing:
+
+        best = -999
+
+        # Check two child nodes
+        for i in range(2):
+
+            value = alphabeta(
+                depth + 1,
+                node * 2 + i,
+                False,
+                values,
+                alpha,
+                beta
+            )
+
+            best = max(best, value)
+
+            alpha = max(alpha, best)
+
+            # Pruning condition
+            if beta <= alpha:
+                break
+
+        return best
+
+    else:
+
+        best = 999
+
+        # Check two child nodes
+        for i in range(2):
+
+            value = alphabeta(
+                depth + 1,
+                node * 2 + i,
+                True,
+                values,
+                alpha,
+                beta
+            )
+
+            best = min(best, value)
+
+            beta = min(beta, best)
+
+            # Pruning condition
+            if beta <= alpha:
+                break
+
+        return best
+
+
+# Main program
+values = [3, 5, 6, 9, 1, 2, 0, -1]
+
+print("Alpha-Beta Pruning Algorithm")
+
+result = alphabeta(
+    0, 0, True, values, -999, 999
+)
+
+print("Optimal Value:", result)
